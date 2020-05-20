@@ -1,0 +1,27 @@
+name: Coverage
+on:
+    push:
+        branches:
+            - "master"
+
+jobs:
+    codecov:
+        name: Code Coverage
+        runs-on: ubuntu-latest
+        steps:
+            - name: Set up go (TODO - test frontend)
+              uses: actions/setup-go@v1
+              with:
+                  go-version: 1.14.x
+
+            - name: Check out code
+              uses: actions/checkout@v1
+
+            - name: Run tests
+              run: make test-cov
+
+            - name: Upload coverage report to CodeCov
+              uses: codecov/codecov-action@v1.0.0
+              with:
+                  token: ${{secrets.CODECOV_TOKEN}}
+                  file: ./coverage.txt

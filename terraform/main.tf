@@ -26,8 +26,8 @@ module "dev" {
 
   // required
   name           = "visca-service-dev"
-  image          = "docker.pkg.github.com/byuoitav/visca-service/visca-service"
-  image_version  = ""
+  image          = "docker.pkg.github.com/byuoitav/visca-service/visca-service-dev"
+  image_version  = "058eb23"
   container_port = 8080
   repo_url       = "https://github.com/byuoitav/visca-service"
 

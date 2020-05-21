@@ -12,6 +12,7 @@ import (
 	"github.com/byuoitav/visca"
 	"github.com/byuoitav/visca-service/handlers"
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 	"github.com/spf13/pflag"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -74,6 +75,11 @@ func main() {
 	}
 
 	e := echo.New()
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{http.MethodGet},
+		MaxAge:       7200, // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age
+	}))
 
 	e.GET("/healthz", func(c echo.Context) error {
 		return c.String(http.StatusOK, "healthy")

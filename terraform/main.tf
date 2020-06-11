@@ -35,7 +35,7 @@ module "dev" {
   // required
   name           = "visca-service-dev"
   image          = "docker.pkg.github.com/byuoitav/visca-service/visca-service-dev"
-  image_version  = "e10df7c"
+  image_version  = "dcb4b9d"
   container_port = 8080
   repo_url       = "https://github.com/byuoitav/visca-service"
 
@@ -46,7 +46,7 @@ module "dev" {
   container_args = [
     "--port", "8080",
     "--log-level", "0", // set log level to info
-    "--name", "visca-service-dev",
+    "--name", "k8s-visca-service-dev",
     "--event-url", data.aws_ssm_parameter.event_url.value,
     "--dns-addr", data.aws_ssm_parameter.dns_addr.value,
   ]

@@ -2,72 +2,25 @@ package handlers
 
 import (
 	"context"
-	"fmt"
-	"net/http"
-	"time"
 
+	"github.com/byuoitav/visca"
 	"github.com/labstack/echo"
 )
 
 func (h *Handlers) ZoomIn(c echo.Context) error {
-	addr := c.Param("address")
-	if len(addr) == 0 {
-		return c.String(http.StatusBadRequest, "must include the address of the camera")
-	}
-
-	ctx, cancel := context.WithTimeout(c.Request().Context(), 5*time.Second)
-	defer cancel()
-
-	cam, err := h.CreateCamera(ctx, addr)
-	if err != nil {
-		return c.String(http.StatusInternalServerError, fmt.Sprintf("unable to create camera: %s", err))
-	}
-
-	if err := cam.ZoomTele(ctx); err != nil {
-		return c.String(http.StatusInternalServerError, err.Error())
-	}
-
-	return c.NoContent(http.StatusOK)
+	return h.generic(c, "ZoomIn", func(ctx context.Context, cam *visca.Camera) error {
+		return cam.ZoomTele(ctx)
+	})
 }
 
 func (h *Handlers) ZoomOut(c echo.Context) error {
-	addr := c.Param("address")
-	if len(addr) == 0 {
-		return c.String(http.StatusBadRequest, "must include the address of the camera")
-	}
-
-	ctx, cancel := context.WithTimeout(c.Request().Context(), 5*time.Second)
-	defer cancel()
-
-	cam, err := h.CreateCamera(ctx, addr)
-	if err != nil {
-		return c.String(http.StatusInternalServerError, fmt.Sprintf("unable to create camera: %s", err))
-	}
-
-	if err := cam.ZoomWide(ctx); err != nil {
-		return c.String(http.StatusInternalServerError, err.Error())
-	}
-
-	return c.NoContent(http.StatusOK)
+	return h.generic(c, "ZoomOut", func(ctx context.Context, cam *visca.Camera) error {
+		return cam.ZoomWide(ctx)
+	})
 }
 
 func (h *Handlers) ZoomStop(c echo.Context) error {
-	addr := c.Param("address")
-	if len(addr) == 0 {
-		return c.String(http.StatusBadRequest, "must include the address of the camera")
-	}
-
-	ctx, cancel := context.WithTimeout(c.Request().Context(), 5*time.Second)
-	defer cancel()
-
-	cam, err := h.CreateCamera(ctx, addr)
-	if err != nil {
-		return c.String(http.StatusInternalServerError, fmt.Sprintf("unable to create camera: %s", err))
-	}
-
-	if err := cam.ZoomStop(ctx); err != nil {
-		return c.String(http.StatusInternalServerError, err.Error())
-	}
-
-	return c.NoContent(http.StatusOK)
+	return h.generic(c, "ZoomStop", func(ctx context.Context, cam *visca.Camera) error {
+		return cam.ZoomStop(ctx)
+	})
 }

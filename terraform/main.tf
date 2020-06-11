@@ -27,7 +27,7 @@ module "dev" {
   // required
   name           = "visca-service-dev"
   image          = "docker.pkg.github.com/byuoitav/visca-service/visca-service-dev"
-  image_version  = "058eb23"
+  image_version  = "1d19aa9"
   container_port = 8080
   repo_url       = "https://github.com/byuoitav/visca-service"
 
@@ -39,4 +39,7 @@ module "dev" {
     "--port", "8080",
     "--log-level", "0", // set log level to info
   ]
+  ingress_annotations = {
+    "nginx.ingress.kubernetes.io/whitelist-source-range" = "128.187.0.0/16"
+  }
 }

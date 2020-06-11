@@ -16,7 +16,7 @@ import (
 type Publisher struct {
 	GeneratingSystem string
 
-	Resolver net.Resolver
+	Resolver *net.Resolver
 	URL      string
 }
 

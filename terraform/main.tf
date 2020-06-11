@@ -21,13 +21,21 @@ provider "kubernetes" {
   host = data.aws_ssm_parameter.eks_cluster_endpoint.value
 }
 
+data "aws_ssm_parameter" "event_url" {
+  name = "/env/visca-service/event-url"
+}
+
+data "aws_ssm_parameter" "dns_addr" {
+  name = "/env/visca-service/dns-addr"
+}
+
 module "dev" {
   source = "github.com/byuoitav/terraform//modules/kubernetes-deployment"
 
   // required
   name           = "visca-service-dev"
   image          = "docker.pkg.github.com/byuoitav/visca-service/visca-service-dev"
-  image_version  = "1d19aa9"
+  image_version  = "e10df7c"
   container_port = 8080
   repo_url       = "https://github.com/byuoitav/visca-service"
 
@@ -38,8 +46,11 @@ module "dev" {
   container_args = [
     "--port", "8080",
     "--log-level", "0", // set log level to info
+    "--name", "visca-service-dev",
+    "--event-url", data.aws_ssm_parameter.event_url.value,
+    "--dns-addr", data.aws_ssm_parameter.dns_addr.value,
   ]
   ingress_annotations = {
-    "nginx.ingress.kubernetes.io/whitelist-source-range" = "128.187.0.0/16"
+    // "nginx.ingress.kubernetes.io/whitelist-source-range" = "128.187.0.0/16"
   }
 }

@@ -19,7 +19,7 @@ type CreateCameraFunc func(ctx context.Context, addr string) (*visca.Camera, err
 type Handlers struct {
 	CreateCamera   CreateCameraFunc
 	EventPublisher viscaservice.EventPublisher
-	Resolver       net.Resolver
+	Resolver       *net.Resolver
 }
 
 func (h *Handlers) getSourceIP(c echo.Context) (net.IP, error) {

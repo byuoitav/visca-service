@@ -54,3 +54,29 @@ module "dev" {
     // "nginx.ingress.kubernetes.io/whitelist-source-range" = "128.187.0.0/16"
   }
 }
+
+module "prd" {
+  source = "github.com/byuoitav/terraform//modules/kubernetes-deployment"
+
+  // required
+  name           = "visca-service"
+  image          = "docker.pkg.github.com/byuoitav/visca-service/visca-service"
+  image_version  = "v0.1.0"
+  container_port = 8080
+  repo_url       = "https://github.com/byuoitav/visca-service"
+
+  // optional
+  image_pull_secret = "github-docker-registry"
+  public_urls       = ["visca.av.byu.edu"]
+  container_env     = {}
+  container_args = [
+    "--port", "8080",
+    "--log-level", "0", // set log level to info
+    "--name", "k8s-visca-service",
+    "--event-url", data.aws_ssm_parameter.event_url.value,
+    "--dns-addr", data.aws_ssm_parameter.dns_addr.value,
+  ]
+  ingress_annotations = {
+    // "nginx.ingress.kubernetes.io/whitelist-source-range" = "128.187.0.0/16"
+  }
+}

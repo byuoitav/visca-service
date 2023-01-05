@@ -3,6 +3,8 @@ github.com/byuoitav/connpool v0.4.1 h1:pYqy5iEWY18Hwub+q9wuJgzIzRA4263s9UkjQbC0x
 github.com/byuoitav/connpool v0.4.1/go.mod h1:9jVn2IL91Wp6eHEymqxZ5v7zPy07FtIWp/JIfDCMGQY=
 github.com/byuoitav/visca v0.1.0 h1:t4DRO059prpf1mQHplslfSDjORsS1rad7eRzHT43BW4=
 github.com/byuoitav/visca v0.1.0/go.mod h1:dx6LLs98Bh/eTpohthRRH6lI6+TGQiOKz2gezUPZl1Y=
+github.com/byuoitav/visca v0.3.0 h1:cjRh9gcy96CKWGkYbGxeKBj5mIlHW4cPHY37vZM3/0Y=
+github.com/byuoitav/visca v0.3.0/go.mod h1:TkSFkIY4GQb6nlyw6g4SyJBZFDzuhT+ixD8ZEJmx7eM=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dgrijalva/jwt-go v1.0.2 h1:KPldsxuKGsS2FPWsNeg9ZO18aCrGKujPoWXn2yo+KQM=
@@ -18,6 +20,7 @@ github.com/labstack/echo v3.3.10+incompatible h1:pGRcYk231ExFAyoAjAfD85kQzRJCRI8
 github.com/labstack/echo v3.3.10+incompatible/go.mod h1:0INS7j/VjnFxD4E2wkz67b8cVwCLbBmJyDaka6Cmk1s=
 github.com/labstack/gommon v0.3.0 h1:JEeO0bvc78PKdyHxloTKiF8BD5iGrH8T6MSeGvSgob0=
 github.com/labstack/gommon v0.3.0/go.mod h1:MULnywXg0yavhxWKc+lOruYdAhDwPK9wf0OL7NoOu+k=
+github.com/matryer/is v1.4.0/go.mod h1:8I/i5uYgLzgsgEloJE1U6xx5HkBQpAZvepWuujKwMRU=
 github.com/mattn/go-colorable v0.1.2 h1:/bC9yWikZXAL9uJdulbSfyVNIR3n3trXl+v8+1sx8mU=
 github.com/mattn/go-colorable v0.1.2/go.mod h1:U0ppj6V5qS13XJ6of8GYAs25YV2eR4EVcfRqFIhoBtE=
 github.com/mattn/go-isatty v0.0.8/go.mod h1:Iq45c/XA43vh69/j3iqttzPXn0bhXyGjM0Hdxcsrc5s=
